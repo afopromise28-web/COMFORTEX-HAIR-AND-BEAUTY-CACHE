@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products – Comfortex Hair and Beauty Cache</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #0a4a3a;
+    --green-mid: #0d6b53;
+    --green-light: #14a87a;
+    --green-pale: #d6f5e8;
+    --green-mist: #edfbf3;
+    --gold: #c8a96e;
+    --gold-light: #e8d5a8;
+    --white: #ffffff;
+    --off-white: #f8fdf9;
+    --text-dark: #1a2e26;
+    --text-mid: #3a5a4a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text-dark); overflow-x: hidden; }
+
+  /* HEADER */
+  header { position: sticky; top: 0; z-index: 1000; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--green-pale); }
+  .nav-inner { max-width: 1200px; margin: auto; padding: 18px 5%; display: flex; justify-content: space-between; align-items: center; }
+  .logo { display: flex; flex-direction: column; line-height: 1; }
+  .logo-main { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: var(--green-deep); letter-spacing: 0.04em; }
+  .logo-sub { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-top: 2px; }
+  nav { display: flex; gap: 32px; align-items: center; }
+  nav a { text-decoration: none; color: var(--text-mid); font-size: 0.88rem; font-weight: 500; letter-spacing: 0.04em; transition: color 0.2s; position: relative; }
+  nav a::after { content: ''; position: absolute; left: 0; bottom: -3px; width: 0; height: 1.5px; background: var(--green-light); transition: width 0.3s; }
+  nav a:hover { color: var(--green-deep); }
+  nav a:hover::after { width: 100%; }
+  .btn { background: var(--green-deep); color: var(--white); padding: 12px 26px; border-radius: 50px; text-decoration: none; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; display: inline-block; transition: background 0.25s, transform 0.2s, box-shadow 0.25s; border: none; cursor: pointer; }
+  .btn:hover { background: var(--green-mid); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(10,74,58,0.3); }
+
+  /* PAGE HERO */
+  .page-hero { background: linear-gradient(135deg, var(--green-deep), var(--green-mid)); padding: 80px 5% 60px; text-align: center; }
+  .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+  .page-hero p { color: rgba(255,255,255,0.78); font-size: 0.95rem; max-width: 500px; margin: 0 auto; }
+
+  /* FILTERS */
+  .filters { max-width: 1200px; margin: 40px auto 0; padding: 0 5%; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .filter-btn { padding: 10px 24px; border-radius: 30px; border: 2px solid var(--green-pale); background: transparent; color: var(--text-mid); font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.2s; letter-spacing: 0.04em; }
+  .filter-btn.active, .filter-btn:hover { background: var(--green-deep); color: var(--white); border-color: var(--green-deep); }
+
+  /* PRODUCTS */
+  .products-section { padding: 60px 5% 100px; }
+  .category-block { max-width: 1200px; margin: 0 auto 70px; }
+  .cat-heading { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
+  .cat-heading h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: var(--green-deep); }
+  .cat-heading::after { content: ''; flex: 1; height: 1px; background: var(--green-pale); }
+
+  .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+  .product-card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 6px 30px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 16px 50px rgba(0,0,0,0.14); }
+  .product-img { position: relative; height: 280px; overflow: hidden; }
+  .product-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+  .product-card:hover .product-img img { transform: scale(1.06); }
+  .price-tag { position: absolute; top: 14px; right: 14px; background: var(--green-deep); color: var(--white); padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em; }
+  .product-info { padding: 18px 20px 20px; flex: 1; display: flex; flex-direction: column; }
+  .product-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 700; color: var(--green-deep); margin-bottom: 6px; }
+  .product-desc { font-size: 0.8rem; color: var(--text-mid); line-height: 1.5; flex: 1; margin-bottom: 16px; }
+
+
+  /* CALL TO ACTION */
+  .cta-section { background: linear-gradient(135deg, var(--green-deep), var(--green-mid)); padding: 80px 5%; text-align: center; }
+  .cta-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+  .cta-section p { color: rgba(255,255,255,0.78); font-size: 0.92rem; margin-bottom: 32px; }
+  .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .wa-btn { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: var(--white); padding: 16px 34px; border-radius: 60px; text-decoration: none; font-size: 0.95rem; font-weight: 700; transition: transform 0.25s, box-shadow 0.25s; box-shadow: 0 6px 28px rgba(37,211,102,0.4); }
+  .wa-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(37,211,102,0.5); }
+  .wa-btn svg { width: 20px; height: 20px; }
+  .phone-btn { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.15); color: var(--white); padding: 16px 34px; border-radius: 60px; text-decoration: none; font-size: 0.95rem; font-weight: 600; border: 2px solid rgba(255,255,255,0.35); transition: background 0.2s, transform 0.2s; }
+  .phone-btn:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer { background: #051f17; color: rgba(255,255,255,0.7); padding: 40px 5%; text-align: center; }
+  .footer-inner { max-width: 1200px; margin: auto; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: var(--white); letter-spacing: 0.06em; margin-bottom: 10px; }
+  .footer-tagline { font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+  .footer-links { display: flex; justify-content: center; gap: 28px; margin-bottom: 24px; flex-wrap: wrap; }
+  .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+  .footer-bottom { font-size: 0.76rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 4px; }
+
+  @media (max-width: 900px) { nav { display: none; } .page-hero h1 { font-size: 2.4rem; } }
+  @media (max-width: 600px) { .product-grid { grid-template-columns: 1fr 1fr; } .page-hero h1 { font-size: 1.9rem; } }
+  @media (max-width: 420px) { .product-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="nav-inner">
+    <div class="logo">
+      <span class="logo-main">Comfortex</span>
+      <span class="logo-sub">Hair &amp; Beauty Cache</span>
+    </div>
+    <nav></nav>
+    <a href="https://wa.me/message/GB7QTLCBCHXIC1" target="_blank" rel="noopener" class="btn">Shop Now</a>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <p style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:#fff;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Comfortex Hair and Beauty Cache</p>
+  <p style="color:var(--gold-light);font-size:0.92rem;font-style:italic;margin-bottom:18px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.7;">A brand that styles you into perfection! Makes you feel beautiful for a living — elevate your look. We deal with wigs, wristwatches, customized &amp; non-customized jewelleries, sunglasses and more.</p>
+  <h1>Our Collection</h1>
+  <p>Premium wigs, luxury watches, designer shades, jewellery &amp; more. See something you love? Order directly on WhatsApp!</p>
+  <div style="margin-top:28px;">
+    <a href="https://wa.me/message/GB7QTLCBCHXIC1" target="_blank" rel="noopener" class="wa-btn" style="display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;padding:16px 36px;border-radius:60px;text-decoration:none;font-size:1rem;font-weight:700;box-shadow:0 6px 28px rgba(37,211,102,0.45);transition:transform 0.25s,box-shadow 0.25s;">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Order on WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<div class="products-section">
+
+  <!-- WIGS -->
+  <div class="category-block" id="wigs">
+    <div class="cat-heading"><h2>💇‍♀️ Wigs</h2></div>
+    <div class="product-grid">
+
+      <div class="product-card">
+        <div class="product-img">
+          <img src="./styled-bob-wig.png" alt="Styled Bob Wig">
+          <span class="price-tag">₦140,000</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Styled Bob Lace Wig</div>
+          <div class="product-desc">Sleek, installed bob wig with dramatic eye makeup styling. Perfect for a bold, confident look.</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <img src="./bob-lace-front-wig.jpg" alt="Bob Lace Front Wig">
+          <span class="price-tag">₦50,000</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Bob Lace Front Wig</div>
+          <div class="product-desc">Natural straight bob lace front wig. Silky smooth hair, natural parting, ready to install.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WATCHES -->
+  <div class="category-block" id="watches">
+    <div class="cat-heading"><h2>⌚ Wristwatches</h2></div>
+    <div class="product-grid">
+
+      <div class="product-card">
+        <div class="product-img">
+          <img src="./rolex-sky-dweller.jpg" alt="Rolex Sky-Dweller">
+          <span class="price-tag">₦100,000</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Rolex Sky-Dweller</div>
+          <div class="product-desc">Two-tone gold &amp; steel jubilee bracelet with champagne dial. Iconic luxury timepiece.</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <img src="./matturi-chronograph.png" alt="Matturi Chronograph">
+          <span class="price-tag">₦35,000</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Matturi Chronograph</div>
+          <div class="product-desc">Bold blue chronograph with gold accents. Comes in original Matturi box. Unique design.</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <img src="./ladies-bangle-watches.png" alt="Ladies Bangle Watches">
+          <span class="price-tag">₦35,000</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Ladies Bangle Watches</div>
+          <div class="product-desc">Elegant gold bangle-style watches in multiple dial colors. Perfect feminine accessory.</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <img src="./bvlgari-serpenti-watches.png" alt="Bvlgari Serpenti Watches">
+          <span class="price-tag">₦25,000</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Bvlgari Serpenti Style</div>
+          <div class="product-desc">Pair of gold serpenti-inspired teardrop watches. Elegant, slim, and statement-making.</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <img src="./d200-8-in-1-smartwatch.png" alt="D200 8-in-1 Smartwatch">
+          <span class="price-tag">₦30,000</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">D200 8-in-1 Smartwatch</div>
+          <div class="product-desc">Feature-packed smartwatch with earbuds combo. Health tracking, notifications &amp; more.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SUNGLASSES -->
+  <div class="category-block" id="glasses">
+    <div class="cat-heading"><h2>🕶️ Sunglasses</h2></div>
+    <div class="product-grid">
+
+      <div class="product-card">
+        <div class="product-img">
+          <img src="./gucci-crystal-sunglasses.png" alt="Gucci Crystal Sunglasses">
+          <span class="price-tag">₦12,000</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Gucci Crystal Round Shades</div>
+          <div class="product-desc">Round rimless pink lenses adorned with colourful crystals. Comes with case. Stunning statement piece.</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <img src="./pink-gucci-round-sunglasses.png" alt="Pink Gucci Round Sunglasses">
+          <span class="price-tag">₦12,000</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Gucci Pink Rimless Shades</div>
+          <div class="product-desc">Oversized pink rimless round sunglasses with crystal embellishments. Chic and feminine.</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <img src="./prada-style-thick-frame-glasses.png" alt="Prada Style Thick Frame Glasses">
+          <span class="price-tag">₦10,000</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Prada Thick Frame Glasses</div>
+          <div class="product-desc">Bold square thick-frame glasses in pink and black. Fashion-forward statement eyewear for any look.</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <img src="./butterfly-bow-sunglasses.png" alt="Butterfly Bow Sunglasses">
+          <span class="price-tag">₦10,000</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Butterfly Bow Sunglasses</div>
+          <div class="product-desc">Brown gradient oversized shades with gold butterfly bow accent. Glamorous &amp; chic.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JEWELLERY -->
+  <div class="category-block" id="jewellery">
+    <div class="cat-heading"><h2>💍 Jewellery</h2></div>
+    <div class="product-grid">
+
+      <div class="product-card">
+        <div class="product-img">
+          <img src="./gold-floral-necklace-set.png" alt="Gold Floral Necklace Set">
+          <span class="price-tag">₦18,000</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Gold Floral Necklace Set</div>
+          <div class="product-desc">Stunning gold leaf &amp; crystal necklace with matching earrings. Perfect for special occasions.</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <img src="./crystal-ring-set.png" alt="Crystal Ring Set">
+          <span class="price-tag">₦30,000</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Crystal Ring Set</div>
+          <div class="product-desc">3-piece elegant ring set in a luxury red velvet box. Includes plain band &amp; two crystal rings.</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <img src="./customized-gold-name-bracelet.png" alt="Customized Gold Name Bracelet">
+          <span class="price-tag">₦20,000</span>
+        </div>
+        <div class="product-info">
+          <div class="product-name">Customized Gold Bracelet</div>
+          <div class="product-desc">Personalised gold name bracelet with butterfly charm. Comes in a luxury gift box. Perfect gift idea!</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Ready to Order?</h2>
+  <p>Message us directly on WhatsApp or call to place your order. We deliver nationwide!</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/message/GB7QTLCBCHXIC1" class="wa-btn" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Chat on WhatsApp
+    </a>
+    <a href="tel:+2349064371952" class="phone-btn">📞 &nbsp;+234 906 437 1952</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Comfortex Hair and Beauty Cache</div>
+    <div class="footer-tagline">A Brand That Styles You Into Perfection</div>
+    <div class="footer-links"></div>
+    <div class="footer-bottom">© 2026 Comfortex Hair and Beauty Cache · All Rights Reserved</div>
+  </div>
+</footer>
+
+</body>
+</html>
